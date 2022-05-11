@@ -88,7 +88,13 @@ class _HomePageState extends State<HomePage> {
     return Consumer<CovidViewModel>(
       builder: (context, state, _) {
         if (state.requestState == RequestState.LOADING) {
-          return const Center(child: CircularProgressIndicator());
+          return const SizedBox(
+            height: 129.0,
+            width: double.infinity,
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
         } else if (state.requestState == RequestState.LOADED) {
           return Padding(
             padding: paddingOnly(

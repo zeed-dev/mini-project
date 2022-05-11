@@ -1,6 +1,7 @@
 import 'package:covid_app/common/style.dart';
-import 'package:covid_app/screens/home/home_page.dart';
+import 'package:covid_app/screens/main_page.dart';
 import 'package:covid_app/view_models/covid_view_model.dart';
+import 'package:covid_app/view_models/page_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -26,11 +27,12 @@ class _MyAppState extends State<MyApp> {
     );
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (_) => PageViewModel()),
         ChangeNotifierProvider(create: (_) => CovidViewModel()),
       ],
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: HomePage(),
+        home: MainPage(),
       ),
     );
   }

@@ -271,7 +271,7 @@ class _HomePageState extends State<HomePage> {
                   color: Colors.grey.withOpacity(0.05),
                   spreadRadius: 5,
                   blurRadius: 7,
-                  offset: Offset(0, 3), // changes position of shadow
+                  offset: const Offset(0, 3), // changes position of shadow
                 ),
               ],
             ),
@@ -289,10 +289,10 @@ class _HomePageState extends State<HomePage> {
                   style: AppStyle.kBodyText.copyWith(
                     fontSize: 10,
                   ),
-                )
+                ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );
@@ -300,7 +300,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildAbout() {
     return Padding(
-      padding: paddingLeft(16.0),
+      padding: paddingOnly(left: 16.0, right: 16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -346,6 +346,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
+          const SizedBox(height: 12),
         ],
       ),
     );

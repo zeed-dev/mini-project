@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:covid_app/common/enum_state.dart';
 import 'package:covid_app/models/covid.dart';
 import 'package:covid_app/services/covid_service.dart';
@@ -12,11 +10,9 @@ class CovidViewModel extends BaseViewModel {
   Future getDataCovid() async {
     try {
       requestStateChnage = RequestState.LOADING;
-
       final covid = await covidService.getDataCovid();
       _covidModel = covid;
       notifyListeners();
-
       requestStateChnage = RequestState.LOADED;
     } catch (e) {
       errMsgChange = e.toString();

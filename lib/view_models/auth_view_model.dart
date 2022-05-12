@@ -4,9 +4,9 @@ import 'package:covid_app/services/auth_service.dart';
 import 'package:covid_app/view_models/base_view_model.dart';
 
 class AuthViewModel extends BaseViewModel {
-  // AuthViewModel() {
-  //   getCurrentUser();
-  // }
+  AuthViewModel() {
+    getCurrentUser();
+  }
 
   UserModel? _user;
   UserModel? get user => _user;

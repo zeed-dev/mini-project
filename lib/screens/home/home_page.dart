@@ -352,60 +352,6 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _buildAbout() {
-    return Padding(
-      padding: paddingOnly(left: 16.0, right: 16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(height: 20),
-          Text(
-            "Tentang Kami",
-            style: AppStyle.kBodyText.copyWith(
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 12),
-          Container(
-            decoration: BoxDecoration(
-              color: AppStyle.white,
-              borderRadius: BorderRadius.circular(4),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.05),
-                  spreadRadius: 5,
-                  blurRadius: 7,
-                  offset: const Offset(0, 3), // changes position of shadow
-                ),
-              ],
-            ),
-            child: ListTile(
-              title: Text(
-                "Sumber Informasi",
-                style: AppStyle.kSubtitle.copyWith(
-                  fontSize: 12,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              subtitle: Text(
-                "Kami menampilkan data dari sumber terpercaya",
-                style: AppStyle.kSubtitle.copyWith(
-                  fontSize: 10,
-                ),
-              ),
-              dense: true,
-              trailing: Icon(
-                Icons.arrow_forward_ios,
-                color: AppStyle.grey,
-              ),
-            ),
-          ),
-          const SizedBox(height: 12),
-        ],
-      ),
-    );
-  }
-
   @override
   void initState() {
     _init();
@@ -429,7 +375,6 @@ class _HomePageState extends State<HomePage> {
               _buildWidgetCovid(),
               _buildBanner(),
               _buildService(),
-              _buildAbout(),
             ],
           ),
         ),

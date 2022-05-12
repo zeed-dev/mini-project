@@ -37,4 +37,20 @@ class AppStyle {
     fontWeight: FontWeight.w400,
     letterSpacing: 0.25,
   );
+
+  static final kColorScheme = ColorScheme(
+    primary: purple,
+    primaryVariant: purple,
+    secondary: const Color(0xffC0B2FF),
+    secondaryVariant: const Color(0xffC0B2FF),
+    surface: white,
+    background: white,
+    error: Colors.red,
+    onPrimary: white,
+    onSecondary: Colors.white,
+    onSurface: Colors.black87,
+    onBackground: Colors.white,
+    onError: Colors.white,
+    brightness: Brightness.light,
+  );
 }

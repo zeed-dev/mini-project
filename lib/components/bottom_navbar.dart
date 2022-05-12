@@ -16,6 +16,10 @@ Widget buildBottomNavigationBar(PageViewModel _pageViewModel) {
         label: "Home",
       ),
       BottomNavigationBarItem(
+        icon: Icon(Icons.health_and_safety_rounded),
+        label: "Vaccine",
+      ),
+      BottomNavigationBarItem(
         icon: Icon(Icons.person),
         label: "Profile",
       ),

@@ -7,7 +7,6 @@ class BookingService {
 
   Future<void> createBooking(BookingModel booking) async {
     await _ref.doc(booking.id).set({
-      'id': booking.id,
       'userId': booking.userId,
       'dateVisit': booking.dateVisit,
       'vaksinKe': booking.vaksinKe,
@@ -15,6 +14,7 @@ class BookingService {
       'faskes': booking.faskes,
       'alamat': booking.alamat,
       'no_telp': booking.noTelp,
+      'nama': booking.nama,
     });
   }
 
@@ -28,6 +28,7 @@ class BookingService {
       'faskes': booking.faskes,
       'alamat': booking.alamat,
       'no_telp': booking.noTelp,
+      'nama': booking.nama,
     });
   }
 
@@ -37,7 +38,27 @@ class BookingService {
     List<BookingModel> bookings = [];
     for (var doc in snapshot.docs) {
       bookings.add(BookingModel(
-        id: doc["id"],
+        id: doc.id,
+        userId: doc["userId"],
+        dateVisit: doc["dateVisit"],
+        vaksinKe: doc["vaksinKe"],
+        status: doc["status"],
+        faskes: doc["faskes"],
+        alamat: doc["alamat"],
+        noTelp: doc["no_telp"],
+        nama: doc["nama"],
+      ));
+    }
+    return bookings;
+  }
+
+  Future<List<BookingModel>> getBookingByStatus(String status) async {
+    QuerySnapshot snapshot =
+        await _ref.where('status', isEqualTo: status).get();
+    List<BookingModel> bookings = [];
+    for (var doc in snapshot.docs) {
+      bookings.add(BookingModel(
+        id: doc.id,
         userId: doc["userId"],
         dateVisit: doc["dateVisit"],
         vaksinKe: doc["vaksinKe"],

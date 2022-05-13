@@ -2,7 +2,10 @@ import 'package:covid_app/common/const.dart';
 import 'package:covid_app/common/enum_state.dart';
 import 'package:covid_app/common/extension.dart';
 import 'package:covid_app/common/style.dart';
+import 'package:covid_app/screens/news/news.dart';
+import 'package:covid_app/screens/vaccine/aprove_vaccine.dart';
 import 'package:covid_app/screens/vaccine/history.dart';
+import 'package:covid_app/view_models/auth_view_model.dart';
 import 'package:covid_app/view_models/covid_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -255,100 +258,171 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildService() {
-    return Padding(
-      padding: paddingLeft(16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "Layanan Fight Covid-19",
-            style: AppStyle.kBodyText.copyWith(
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 12),
-          Row(
-            children: [
-              Container(
-                height: 88,
-                width: 73,
-                decoration: BoxDecoration(
-                  color: AppStyle.white,
-                  borderRadius: BorderRadius.circular(4),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.05),
-                      spreadRadius: 5,
-                      blurRadius: 7,
-                      offset: const Offset(0, 3), // changes position of shadow
-                    ),
-                  ],
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      "${AppConstant.IMAGE_PATH}/ic_rs.png",
-                      width: 36,
-                    ),
-                    const SizedBox(height: 12),
-                    Text(
-                      "Rumah Sakit\nRujukan",
-                      textAlign: TextAlign.center,
-                      style: AppStyle.kBodyText.copyWith(
-                        fontSize: 10,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(width: 16),
-              InkWell(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const HistoryVaccine()));
-                },
-                child: Container(
-                  height: 88,
-                  width: 73,
-                  decoration: BoxDecoration(
-                    color: AppStyle.white,
-                    borderRadius: BorderRadius.circular(4),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.05),
-                        spreadRadius: 5,
-                        blurRadius: 7,
-                        offset:
-                            const Offset(0, 3), // changes position of shadow
-                      ),
-                    ],
+    return Consumer<AuthViewModel>(
+      builder: (context, state, _) {
+        if (state.requestState == RequestState.LOADING) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (state.requestState == RequestState.LOADED) {
+          return Padding(
+            padding: paddingLeft(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Layanan Fight Covid-19",
+                  style: AppStyle.kBodyText.copyWith(
+                    fontWeight: FontWeight.bold,
                   ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        "${AppConstant.IMAGE_PATH}/ic_rs.png",
-                        width: 36,
-                      ),
-                      const SizedBox(height: 12),
-                      Text(
-                        "Riwayat Vaksin",
-                        textAlign: TextAlign.center,
-                        style: AppStyle.kBodyText.copyWith(
-                          fontSize: 10,
+                ),
+                const SizedBox(height: 12),
+                Row(
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const NewsPage()));
+                      },
+                      child: Container(
+                        height: 88,
+                        width: 73,
+                        decoration: BoxDecoration(
+                          color: AppStyle.white,
+                          borderRadius: BorderRadius.circular(4),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.05),
+                              spreadRadius: 5,
+                              blurRadius: 7,
+                              offset: const Offset(
+                                  0, 3), // changes position of shadow
+                            ),
+                          ],
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              "${AppConstant.IMAGE_PATH}/ic_rs.png",
+                              width: 36,
+                            ),
+                            const SizedBox(height: 12),
+                            Text(
+                              "Berita Kesehatan",
+                              textAlign: TextAlign.center,
+                              style: AppStyle.kBodyText.copyWith(
+                                fontSize: 10,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                    const SizedBox(width: 16),
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const HistoryVaccine()));
+                      },
+                      child: Visibility(
+                        visible: !state.user!.isAdmin,
+                        child: Container(
+                          height: 88,
+                          width: 73,
+                          decoration: BoxDecoration(
+                            color: AppStyle.white,
+                            borderRadius: BorderRadius.circular(4),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.05),
+                                spreadRadius: 5,
+                                blurRadius: 7,
+                                offset: const Offset(
+                                    0, 3), // changes position of shadow
+                              ),
+                            ],
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                "${AppConstant.IMAGE_PATH}/ic_rs.png",
+                                width: 36,
+                              ),
+                              const SizedBox(height: 12),
+                              Text(
+                                "Riwayat Vaksin",
+                                textAlign: TextAlign.center,
+                                style: AppStyle.kBodyText.copyWith(
+                                  fontSize: 10,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const ApproveVaccine()));
+                      },
+                      child: Visibility(
+                        visible: state.user!.isAdmin,
+                        child: Container(
+                          height: 88,
+                          width: 73,
+                          decoration: BoxDecoration(
+                            color: AppStyle.white,
+                            borderRadius: BorderRadius.circular(4),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.05),
+                                spreadRadius: 5,
+                                blurRadius: 7,
+                                offset: const Offset(
+                                    0, 3), // changes position of shadow
+                              ),
+                            ],
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                "${AppConstant.IMAGE_PATH}/ic_rs.png",
+                                width: 36,
+                              ),
+                              const SizedBox(height: 12),
+                              Text(
+                                "Aprove Vaksinasi",
+                                textAlign: TextAlign.center,
+                                style: AppStyle.kBodyText.copyWith(
+                                  fontSize: 10,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-            ],
-          ),
-        ],
-      ),
+              ],
+            ),
+          );
+        } else {
+          return Center(
+            child: Text(state.errMsg),
+          );
+        }
+      },
     );
   }
 
@@ -359,8 +433,9 @@ class _HomePageState extends State<HomePage> {
   }
 
   _init() {
-    Future.microtask(() =>
-        Provider.of<CovidViewModel>(context, listen: false).getDataCovid());
+    Future.microtask(() {
+      Provider.of<CovidViewModel>(context, listen: false).getDataCovid();
+    });
   }
 
   @override

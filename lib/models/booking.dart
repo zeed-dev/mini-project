@@ -7,6 +7,7 @@ class BookingModel {
   final String? faskes;
   final String? alamat;
   final String? noTelp;
+  final String? nama;
 
   BookingModel({
     this.id,
@@ -17,6 +18,7 @@ class BookingModel {
     this.faskes,
     this.alamat,
     this.noTelp,
+    this.nama,
   });
 
   Map<String, dynamic> toJson() {
@@ -29,6 +31,7 @@ class BookingModel {
       'faskes': faskes,
       'alamat': alamat,
       'no_telp': noTelp,
+      'nama': nama,
     };
   }
 
@@ -42,6 +45,31 @@ class BookingModel {
       faskes: map['faskes'],
       alamat: map['alamat'],
       noTelp: map['no_telp'],
+      nama: map['nama'],
+    );
+  }
+
+  BookingModel copyWith({
+    String? id,
+    String? userId,
+    String? dateVisit,
+    String? vaksinKe,
+    String? status,
+    String? faskes,
+    String? alamat,
+    String? noTelp,
+    String? nama,
+  }) {
+    return BookingModel(
+      id: id ?? this.id,
+      userId: userId ?? this.userId,
+      dateVisit: dateVisit ?? this.dateVisit,
+      vaksinKe: vaksinKe ?? this.vaksinKe,
+      status: status ?? this.status,
+      faskes: faskes ?? this.faskes,
+      alamat: alamat ?? this.alamat,
+      noTelp: noTelp ?? this.noTelp,
+      nama: nama ?? this.nama,
     );
   }
 }

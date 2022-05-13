@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:covid_app/models/user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -16,6 +18,7 @@ class AuthService {
       name: snapshot["name"],
       address: snapshot["address"],
       phone: snapshot["phone"],
+      isAdmin: snapshot["isAdmin"],
     );
   }
 
@@ -26,6 +29,7 @@ class AuthService {
       "name": user.name,
       "address": user.address,
       "phone": user.phone,
+      "isAdmin": user.isAdmin,
     });
   }
 
@@ -50,6 +54,7 @@ class AuthService {
       name: users.name,
       address: users.address,
       phone: users.phone,
+      isAdmin: users.isAdmin,
     );
 
     await setUser(userModel);

@@ -1,11 +1,9 @@
 import 'package:covid_app/common/enum_state.dart';
 import 'package:covid_app/common/style.dart';
 import 'package:covid_app/models/booking.dart';
-import 'package:covid_app/models/user.dart';
 import 'package:covid_app/models/vaccine.dart';
 import 'package:covid_app/view_models/auth_view_model.dart';
 import 'package:covid_app/view_models/booking_view_model.dart';
-import 'package:covid_app/view_models/vaccine_view_model.dart';
 import 'package:covid_app/widgets/date_piocker.dart';
 import 'package:covid_app/widgets/text_field_widget.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +23,7 @@ class _BookingPageState extends State<BookingPage> {
   TextEditingController? _noTlpController;
   TextEditingController? _alamatController;
   TextEditingController? _faskesController;
+  TextEditingController? _namaController;
 
   _init() {
     _tglVaksinController = TextEditingController();
@@ -32,6 +31,7 @@ class _BookingPageState extends State<BookingPage> {
     _noTlpController = TextEditingController();
     _alamatController = TextEditingController();
     _faskesController = TextEditingController();
+    _namaController = TextEditingController();
 
     _faskesController?.text = widget.vaccineModel.jenisFaskes ?? "";
   }
@@ -60,6 +60,16 @@ class _BookingPageState extends State<BookingPage> {
                 height: 150,
               ),
               const SizedBox(height: 16.0),
+              Consumer<AuthViewModel>(
+                builder: (context, state, _) {
+                  _namaController?.text = state.user?.name ?? "";
+                  return TextFieldWidget(
+                    controller: _namaController ?? TextEditingController(),
+                    onChange: (value) {},
+                    label: "Nama Lengkap",
+                  );
+                },
+              ),
               TextFieldWidget(
                 controller: _faskesController ?? TextEditingController(),
                 onChange: (value) {},
@@ -101,7 +111,8 @@ class _BookingPageState extends State<BookingPage> {
                             _vaksinKeController?.text != "" &&
                             _noTlpController?.text != "" &&
                             _alamatController?.text != "" &&
-                            _faskesController?.text != "") {
+                            _faskesController?.text != "" &&
+                            _namaController?.text != "") {
                           BookingModel bookingModel = BookingModel(
                             dateVisit: _tglVaksinController?.text,
                             vaksinKe: _vaksinKeController?.text,
@@ -109,6 +120,7 @@ class _BookingPageState extends State<BookingPage> {
                             alamat: _alamatController?.text,
                             faskes: _faskesController?.text,
                             userId: _authViewModel.user?.id,
+                            nama: _namaController?.text,
                           );
 
                           await _bookingViewModel

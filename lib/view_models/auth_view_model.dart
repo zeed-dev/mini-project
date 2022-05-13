@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:covid_app/common/enum_state.dart';
 import 'package:covid_app/models/user.dart';
 import 'package:covid_app/services/auth_service.dart';
@@ -42,6 +44,7 @@ class AuthViewModel extends BaseViewModel {
       requestStateChnage = RequestState.LOADING;
       final user = await authService.getCurrentUser();
       _user = user;
+      log("USER CURRENT ${user!.isAdmin}");
       notifyListeners();
       requestStateChnage = RequestState.LOADED;
     } catch (e) {

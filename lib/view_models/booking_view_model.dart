@@ -47,4 +47,16 @@ class BookingViewModel extends BaseViewModel {
       requestStateChnage = RequestState.ERROR;
     }
   }
+
+  Future<void> getBookingByStatus(String status) async {
+    try {
+      requestStateChnage = RequestState.LOADING;
+      _bookingList = await bookingService.getBookingByStatus(status);
+      notifyListeners();
+      requestStateChnage = RequestState.LOADED;
+    } catch (e) {
+      errMsgChange = e.toString();
+      requestStateChnage = RequestState.ERROR;
+    }
+  }
 }

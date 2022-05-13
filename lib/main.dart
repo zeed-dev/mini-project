@@ -4,6 +4,7 @@ import 'package:covid_app/screens/main_page.dart';
 import 'package:covid_app/view_models/auth_view_model.dart';
 import 'package:covid_app/view_models/booking_view_model.dart';
 import 'package:covid_app/view_models/covid_view_model.dart';
+import 'package:covid_app/view_models/news_view_model.dart';
 import 'package:covid_app/view_models/page_view_model.dart';
 import 'package:covid_app/view_models/vaccine_view_model.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -39,6 +40,7 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (_) => VaccineViewModel()),
         ChangeNotifierProvider(create: (_) => AuthViewModel()),
         ChangeNotifierProvider(create: (_) => BookingViewModel()),
+        ChangeNotifierProvider(create: (_) => NewsViewModel()),
       ],
       child: MaterialApp(
         theme: ThemeData(colorScheme: AppStyle.kColorScheme),

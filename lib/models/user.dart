@@ -4,6 +4,7 @@ class UserModel {
   final String? name;
   final String? address;
   final String? phone;
+  final bool isAdmin;
 
   UserModel({
     this.id,
@@ -11,6 +12,7 @@ class UserModel {
     required this.name,
     required this.address,
     required this.phone,
+    this.isAdmin = false,
   });
 
   Map<String, dynamic> toMap() {
@@ -20,6 +22,7 @@ class UserModel {
       'name': name,
       'address': address,
       'phone': phone,
+      'isAdmin': isAdmin,
     };
   }
 
@@ -30,25 +33,7 @@ class UserModel {
       name: map['name'],
       address: map['address'],
       phone: map['phone'],
-    );
-  }
-
-  UserModel copyWith({
-    String? id,
-    String? email,
-    String? name,
-    String? address,
-    String? phone,
-    String? status,
-    String? vaksinKe,
-    String? dateVisit,
-  }) {
-    return UserModel(
-      id: id ?? this.id,
-      email: email ?? this.email,
-      name: name ?? this.name,
-      address: address ?? this.address,
-      phone: phone ?? this.phone,
+      isAdmin: map['isAdmin'],
     );
   }
 }

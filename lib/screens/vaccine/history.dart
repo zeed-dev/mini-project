@@ -42,60 +42,65 @@ class _HistoryVaccineState extends State<HistoryVaccine> {
           builder: (context, state, _) {
             return SingleChildScrollView(
               child: Column(
-                children: state.bookingList!.map((booking) {
-                  if (state.requestState == RequestState.LOADING) {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  } else if (state.requestState == RequestState.ERROR) {
-                    return Center(
-                      child: Text(state.errMsg),
-                    );
-                  } else if (state.requestState == RequestState.LOADED) {
-                    return Container(
-                      margin: paddingOnly(left: 16.0, right: 16.0, top: 16.0),
-                      width: double.infinity,
-                      height: 200,
-                      child: Card(
-                        elevation: 1,
-                        child: Padding(
-                          padding: paddingAll(16.0),
-                          child: Column(
-                            children: [
-                              Text(
-                                "Vaksin Covid-19",
-                                style: AppStyle.kHeading6,
+                children: state.bookingList != null
+                    ? state.bookingList!.map((booking) {
+                        if (state.requestState == RequestState.LOADING) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        } else if (state.requestState == RequestState.ERROR) {
+                          return Center(
+                            child: Text(state.errMsg),
+                          );
+                        } else if (state.requestState == RequestState.LOADED) {
+                          return Container(
+                            margin:
+                                paddingOnly(left: 16.0, right: 16.0, top: 16.0),
+                            width: double.infinity,
+                            height: 200,
+                            child: Card(
+                              elevation: 1,
+                              child: Padding(
+                                padding: paddingAll(16.0),
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      "Vaksin Covid-19",
+                                      style: AppStyle.kHeading6,
+                                    ),
+                                    Text(
+                                      "Riwayat vaksin yang sudah diterima",
+                                      style: AppStyle.kBodyText,
+                                    ),
+                                    const SizedBox(height: 16.0),
+                                    Text(
+                                      _authViewModel.user?.name ?? "",
+                                      style: AppStyle.kSubtitle,
+                                    ),
+                                    Text(
+                                      _authViewModel.user?.address ?? "",
+                                      style: AppStyle.kSubtitle,
+                                    ),
+                                    Text(
+                                      "Vaksin ke - ${booking.vaksinKe}",
+                                      style: AppStyle.kSubtitle,
+                                    ),
+                                    Text(
+                                      "Status - ${booking.status}",
+                                      style: AppStyle.kSubtitle,
+                                    ),
+                                  ],
+                                ),
                               ),
-                              Text(
-                                "Riwayat vaksin yang sudah diterima",
-                                style: AppStyle.kBodyText,
-                              ),
-                              const SizedBox(height: 16.0),
-                              Text(
-                                _authViewModel.user?.name ?? "",
-                                style: AppStyle.kSubtitle,
-                              ),
-                              Text(
-                                _authViewModel.user?.address ?? "",
-                                style: AppStyle.kSubtitle,
-                              ),
-                              Text(
-                                "Vaksin ke - ${booking.vaksinKe}",
-                                style: AppStyle.kSubtitle,
-                              ),
-                              Text(
-                                "Status - ${booking.status}",
-                                style: AppStyle.kSubtitle,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    );
-                  } else {
-                    return const SizedBox();
-                  }
-                }).toList(),
+                            ),
+                          );
+                        } else {
+                          return const SizedBox();
+                        }
+                      }).toList()
+                    : [
+                        const SizedBox(),
+                      ],
               ),
             );
           },

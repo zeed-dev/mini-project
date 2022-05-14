@@ -121,6 +121,8 @@ class _BookingPageState extends State<BookingPage> {
                             faskes: _faskesController?.text,
                             userId: _authViewModel.user?.id,
                             nama: _namaController?.text,
+                            createdAt: DateTime.now(),
+                            updatedAt: DateTime.now(),
                           );
 
                           await _bookingViewModel

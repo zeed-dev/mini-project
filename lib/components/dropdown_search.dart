@@ -41,6 +41,7 @@ Widget dropDownSearchWidget({
                 return null;
               }
             }
+            return null;
           }
         : null,
     onChanged: onChanged,

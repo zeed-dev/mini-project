@@ -6,30 +6,11 @@ class BookingService {
       FirebaseFirestore.instance.collection('bookings');
 
   Future<void> createBooking(BookingModel booking) async {
-    await _ref.doc(booking.id).set({
-      'userId': booking.userId,
-      'dateVisit': booking.dateVisit,
-      'vaksinKe': booking.vaksinKe,
-      'status': booking.status,
-      'faskes': booking.faskes,
-      'alamat': booking.alamat,
-      'no_telp': booking.noTelp,
-      'nama': booking.nama,
-    });
+    await _ref.doc(booking.id).set(booking.toJson());
   }
 
   Future<void> updateBooking(BookingModel booking) async {
-    await _ref.doc(booking.id).update({
-      'id': booking.id,
-      'userId': booking.userId,
-      'dateVisit': booking.dateVisit,
-      'vaksinKe': booking.vaksinKe,
-      'status': booking.status,
-      'faskes': booking.faskes,
-      'alamat': booking.alamat,
-      'no_telp': booking.noTelp,
-      'nama': booking.nama,
-    });
+    await _ref.doc(booking.id).update(booking.toJson());
   }
 
   Future<List<BookingModel>> getBookingByUserId(String userId) async {
@@ -47,6 +28,8 @@ class BookingService {
         alamat: doc["alamat"],
         noTelp: doc["no_telp"],
         nama: doc["nama"],
+        createdAt: doc["createdAt"],
+        updatedAt: doc["updatedAt"],
       ));
     }
     return bookings;
@@ -66,6 +49,9 @@ class BookingService {
         faskes: doc["faskes"],
         alamat: doc["alamat"],
         noTelp: doc["no_telp"],
+        nama: doc["nama"],
+        createdAt: doc["createdAt"],
+        updatedAt: doc["updatedAt"],
       ));
     }
     return bookings;

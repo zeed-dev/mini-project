@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:covid_app/models/user.dart';
 import 'package:firebase_auth/firebase_auth.dart';

@@ -8,6 +8,8 @@ class BookingModel {
   final String? alamat;
   final String? noTelp;
   final String? nama;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
 
   BookingModel({
     this.id,
@@ -19,6 +21,8 @@ class BookingModel {
     this.alamat,
     this.noTelp,
     this.nama,
+    this.createdAt,
+    this.updatedAt,
   });
 
   Map<String, dynamic> toJson() {
@@ -32,6 +36,8 @@ class BookingModel {
       'alamat': alamat,
       'no_telp': noTelp,
       'nama': nama,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
     };
   }
 
@@ -46,6 +52,8 @@ class BookingModel {
       alamat: map['alamat'],
       noTelp: map['no_telp'],
       nama: map['nama'],
+      createdAt: map['createdAt'],
+      updatedAt: map['updatedAt'],
     );
   }
 
@@ -59,6 +67,8 @@ class BookingModel {
     String? alamat,
     String? noTelp,
     String? nama,
+    DateTime? createdAt,
+    DateTime? updatedAt,
   }) {
     return BookingModel(
       id: id ?? this.id,
@@ -70,6 +80,8 @@ class BookingModel {
       alamat: alamat ?? this.alamat,
       noTelp: noTelp ?? this.noTelp,
       nama: nama ?? this.nama,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
     );
   }
 }

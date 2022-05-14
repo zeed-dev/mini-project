@@ -3,6 +3,7 @@ import 'package:covid_app/common/extension.dart';
 import 'package:covid_app/common/style.dart';
 import 'package:covid_app/view_models/auth_view_model.dart';
 import 'package:covid_app/view_models/booking_view_model.dart';
+import 'package:covid_app/widgets/item_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -54,40 +55,52 @@ class _HistoryVaccineState extends State<HistoryVaccine> {
                           );
                         } else if (state.requestState == RequestState.LOADED) {
                           return Container(
-                            margin:
-                                paddingOnly(left: 16.0, right: 16.0, top: 16.0),
+                            margin: paddingOnly(
+                              left: 16.0,
+                              right: 16.0,
+                              top: 16.0,
+                            ),
                             width: double.infinity,
-                            height: 200,
                             child: Card(
                               elevation: 1,
                               child: Padding(
                                 padding: paddingAll(16.0),
                                 child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      "Vaksin Covid-19",
-                                      style: AppStyle.kHeading6,
+                                    Center(
+                                      child: Text(
+                                        "Vaksin Covid-19",
+                                        style: AppStyle.kHeading6.copyWith(
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
                                     ),
-                                    Text(
-                                      "Riwayat vaksin yang sudah diterima",
-                                      style: AppStyle.kBodyText,
+                                    Center(
+                                      child: Text(
+                                        "Riwayat vaksin yang sudah diterima",
+                                        style: AppStyle.kBodyText.copyWith(
+                                          fontWeight: FontWeight.w100,
+                                          color: Colors.grey,
+                                        ),
+                                      ),
                                     ),
                                     const SizedBox(height: 16.0),
-                                    Text(
-                                      _authViewModel.user?.name ?? "",
-                                      style: AppStyle.kSubtitle,
+                                    itemCardWidget(
+                                      key: "Nama",
+                                      value: _authViewModel.user?.name,
                                     ),
-                                    Text(
-                                      _authViewModel.user?.address ?? "",
-                                      style: AppStyle.kSubtitle,
+                                    itemCardWidget(
+                                      key: "Alamat",
+                                      value: _authViewModel.user?.address,
                                     ),
-                                    Text(
-                                      "Vaksin ke - ${booking.vaksinKe}",
-                                      style: AppStyle.kSubtitle,
+                                    itemCardWidget(
+                                      key: "Vakisn ke",
+                                      value: booking.vaksinKe,
                                     ),
-                                    Text(
-                                      "Status - ${booking.status}",
-                                      style: AppStyle.kSubtitle,
+                                    itemCardWidget(
+                                      key: "Status",
+                                      value: booking.status,
                                     ),
                                   ],
                                 ),

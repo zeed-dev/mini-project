@@ -99,11 +99,10 @@ class _BookingPageState extends State<BookingPage> {
                     );
                   },
                 ),
-                dateFieldWidget(
+                DateFieldWidget(
                   label: "Pilih Tanggal Vaksin",
                   dateController:
                       _tglVaksinController ?? TextEditingController(),
-                  context: context,
                   onChanged: (value) {},
                 ),
                 TextFieldWidget(

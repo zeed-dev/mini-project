@@ -21,6 +21,7 @@ class AuthViewModel extends BaseViewModel {
       notifyListeners();
       requestStateChnage = RequestState.LOADED;
     } catch (e) {
+      log("ERROR signIn :: $e");
       errMsgChange = e.toString();
       requestStateChnage = RequestState.ERROR;
     }
@@ -34,6 +35,7 @@ class AuthViewModel extends BaseViewModel {
       notifyListeners();
       requestStateChnage = RequestState.LOADED;
     } catch (e) {
+      log("ERROR signUp :: $e");
       errMsgChange = e.toString();
       requestStateChnage = RequestState.ERROR;
     }
@@ -44,7 +46,6 @@ class AuthViewModel extends BaseViewModel {
       requestStateChnage = RequestState.LOADING;
       final user = await authService.getCurrentUser();
       _user = user;
-      log("USER CURRENT ${user!.isAdmin}");
       notifyListeners();
       requestStateChnage = RequestState.LOADED;
     } catch (e) {

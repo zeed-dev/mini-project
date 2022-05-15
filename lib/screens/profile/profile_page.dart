@@ -65,13 +65,12 @@ class ProfilePage extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () async {
-                    await _pageViewModel.selectedPageChange(0);
+                    _pageViewModel.selectedPageChange(0);
                     await _auth.signOut();
-                    Navigator.pushAndRemoveUntil(
+                    Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
                           builder: ((context) => const SignInPage())),
-                      (route) => false,
                     );
                   },
                   child: Icon(

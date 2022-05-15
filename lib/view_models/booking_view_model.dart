@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:covid_app/common/enum_state.dart';
 import 'package:covid_app/models/booking.dart';
 import 'package:covid_app/services/booking_service.dart';
@@ -18,6 +20,7 @@ class BookingViewModel extends BaseViewModel {
       notifyListeners();
       requestStateChnage = RequestState.LOADED;
     } catch (e) {
+      log("ERROR createBooking :: $e");
       errMsgChange = e.toString();
       requestStateChnage = RequestState.ERROR;
     }
@@ -31,6 +34,7 @@ class BookingViewModel extends BaseViewModel {
       notifyListeners();
       requestStateChnage = RequestState.LOADED;
     } catch (e) {
+      log("ERROR updateBooking :: $e");
       errMsgChange = e.toString();
       requestStateChnage = RequestState.ERROR;
     }
@@ -43,6 +47,7 @@ class BookingViewModel extends BaseViewModel {
       notifyListeners();
       requestStateChnage = RequestState.LOADED;
     } catch (e) {
+      log("ERROR getBookingByUserId :: $e");
       errMsgChange = e.toString();
       requestStateChnage = RequestState.ERROR;
     }
@@ -55,6 +60,7 @@ class BookingViewModel extends BaseViewModel {
       notifyListeners();
       requestStateChnage = RequestState.LOADED;
     } catch (e) {
+      log("ERROR getBookingByStatus :: $e");
       errMsgChange = e.toString();
       requestStateChnage = RequestState.ERROR;
     }

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:covid_app/common/enum_state.dart';
 import 'package:covid_app/models/distric.dart';
 import 'package:covid_app/models/province.dart';
@@ -35,6 +37,7 @@ class VaccineViewModel extends BaseViewModel {
       notifyListeners();
       requestStateChnage = RequestState.LOADED;
     } catch (e) {
+      log("ERROR getProvince :: $e");
       errMsgChange = e.toString();
       requestStateChnage = RequestState.ERROR;
     }
@@ -48,6 +51,7 @@ class VaccineViewModel extends BaseViewModel {
       notifyListeners();
       requestStateChnage = RequestState.LOADED;
     } catch (e) {
+      log("ERROR getDistric :: $e");
       errMsgChange = e.toString();
       requestStateChnage = RequestState.ERROR;
     }
@@ -61,6 +65,7 @@ class VaccineViewModel extends BaseViewModel {
       notifyListeners();
       requestStateChnage = RequestState.LOADED;
     } catch (e) {
+      log("ERROR getVaccine :: $e");
       errMsgChange = e.toString();
       requestStateChnage = RequestState.ERROR;
     }

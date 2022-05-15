@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class BookingModel {
   final String? id;
   final String? userId;
@@ -8,8 +10,8 @@ class BookingModel {
   final String? alamat;
   final String? noTelp;
   final String? nama;
-  final DateTime? createdAt;
-  final DateTime? updatedAt;
+  final Timestamp? createdAt;
+  final Timestamp? updatedAt;
 
   BookingModel({
     this.id,
@@ -67,8 +69,8 @@ class BookingModel {
     String? alamat,
     String? noTelp,
     String? nama,
-    DateTime? createdAt,
-    DateTime? updatedAt,
+    Timestamp? createdAt,
+    Timestamp? updatedAt,
   }) {
     return BookingModel(
       id: id ?? this.id,

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:covid_app/common/enum_state.dart';
 import 'package:covid_app/models/covid.dart';
 import 'package:covid_app/services/covid_service.dart';
@@ -15,6 +17,7 @@ class CovidViewModel extends BaseViewModel {
       notifyListeners();
       requestStateChnage = RequestState.LOADED;
     } catch (e) {
+      log("ERROR getDataCovid :: $e");
       errMsgChange = e.toString();
       requestStateChnage = RequestState.ERROR;
     }

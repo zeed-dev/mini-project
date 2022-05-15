@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:covid_app/common/enum_state.dart';
 import 'package:covid_app/common/style.dart';
 import 'package:covid_app/models/booking.dart';
@@ -121,8 +122,8 @@ class _BookingPageState extends State<BookingPage> {
                             faskes: _faskesController?.text,
                             userId: _authViewModel.user?.id,
                             nama: _namaController?.text,
-                            createdAt: DateTime.now(),
-                            updatedAt: DateTime.now(),
+                            createdAt: Timestamp.fromDate(DateTime.now()),
+                            updatedAt: Timestamp.fromDate(DateTime.now()),
                           );
 
                           await _bookingViewModel

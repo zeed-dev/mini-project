@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:covid_app/common/enum_state.dart';
 import 'package:covid_app/common/extension.dart';
 import 'package:covid_app/common/style.dart';
+import 'package:covid_app/helper/date_helper.dart';
 import 'package:covid_app/view_models/auth_view_model.dart';
 import 'package:covid_app/view_models/booking_view_model.dart';
 import 'package:covid_app/widgets/item_card.dart';
@@ -17,17 +20,20 @@ class HistoryVaccine extends StatefulWidget {
 class _HistoryVaccineState extends State<HistoryVaccine> {
   @override
   void initState() {
+    _init();
+    super.initState();
+  }
+
+  _init() {
     Future.microtask(
       () {
         final userId =
             Provider.of<AuthViewModel>(context, listen: false).user?.id ?? "";
 
-        return Provider.of<BookingViewModel>(context, listen: false)
+        Provider.of<BookingViewModel>(context, listen: false)
             .getBookingByUserId(userId);
       },
     );
-
-    super.initState();
   }
 
   @override
@@ -41,19 +47,19 @@ class _HistoryVaccineState extends State<HistoryVaccine> {
       body: SafeArea(
         child: Consumer<BookingViewModel>(
           builder: (context, state, _) {
-            return SingleChildScrollView(
-              child: Column(
-                children: state.bookingList != null
-                    ? state.bookingList!.map((booking) {
-                        if (state.requestState == RequestState.LOADING) {
-                          return const Center(
-                            child: CircularProgressIndicator(),
-                          );
-                        } else if (state.requestState == RequestState.ERROR) {
-                          return Center(
-                            child: Text(state.errMsg),
-                          );
-                        } else if (state.requestState == RequestState.LOADED) {
+            if (state.requestState == RequestState.LOADING) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            } else if (state.requestState == RequestState.ERROR) {
+              return Center(
+                child: Text(state.errMsg),
+              );
+            } else if (state.requestState == RequestState.LOADED) {
+              return SingleChildScrollView(
+                child: Column(
+                  children: state.bookingList != null
+                      ? state.bookingList!.map((booking) {
                           return Container(
                             margin: paddingOnly(
                               left: 16.0,
@@ -99,23 +105,37 @@ class _HistoryVaccineState extends State<HistoryVaccine> {
                                       value: booking.vaksinKe,
                                     ),
                                     itemCardWidget(
+                                      key: "Tanggal Vaksin",
+                                      value: booking.dateVisit,
+                                    ),
+                                    itemCardWidget(
                                       key: "Status",
                                       value: booking.status,
+                                    ),
+                                    const Divider(),
+                                    itemCardWidget(
+                                      key: "Dibuat Tanggal",
+                                      value: DateHelper
+                                          .changeFormatIdToDateTimeFormat(
+                                        date: booking.createdAt?.toDate(),
+                                      ),
                                     ),
                                   ],
                                 ),
                               ),
                             ),
                           );
-                        } else {
-                          return const SizedBox();
-                        }
-                      }).toList()
-                    : [
-                        const SizedBox(),
-                      ],
-              ),
-            );
+                        }).toList()
+                      : [
+                          const Center(
+                            child: Text("Tidak ada data"),
+                          )
+                        ],
+                ),
+              );
+            } else {
+              return const SizedBox();
+            }
           },
         ),
       ),

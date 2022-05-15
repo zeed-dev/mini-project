@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:covid_app/common/enum_state.dart';
 import 'package:covid_app/models/news.dart';
 import 'package:covid_app/services/new_service.dart';
@@ -15,6 +17,7 @@ class NewsViewModel extends BaseViewModel {
       notifyListeners();
       requestStateChnage = RequestState.LOADED;
     } catch (e) {
+      log("ERROR getNews :: $e");
       errMsgChange = e.toString();
       requestStateChnage = RequestState.ERROR;
     }

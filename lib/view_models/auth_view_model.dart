@@ -53,4 +53,17 @@ class AuthViewModel extends BaseViewModel {
       requestStateChnage = RequestState.ERROR;
     }
   }
+
+  Future<void> signOut() async {
+    try {
+      requestStateChnage = RequestState.LOADING;
+      await authService.signOut();
+      _user = null;
+      notifyListeners();
+      requestStateChnage = RequestState.LOADED;
+    } catch (e) {
+      errMsgChange = e.toString();
+      requestStateChnage = RequestState.ERROR;
+    }
+  }
 }

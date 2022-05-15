@@ -86,10 +86,15 @@ class _BookingPageState extends State<BookingPage> {
                   );
                 },
               ),
-              TextFieldWidget(
-                controller: _alamatController ?? TextEditingController(),
-                onChange: (value) {},
-                label: "Alamat",
+              Consumer<AuthViewModel>(
+                builder: (context, state, _) {
+                  _alamatController?.text = state.user?.address ?? "";
+                  return TextFieldWidget(
+                    controller: _alamatController ?? TextEditingController(),
+                    onChange: (value) {},
+                    label: "Alamat",
+                  );
+                },
               ),
               dateFieldWidget(
                 label: "Pilih Tanggal Vaksin",

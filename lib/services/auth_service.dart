@@ -64,6 +64,10 @@ class AuthService {
     UserModel userModel = await getUserById(user?.uid ?? "");
     return userModel;
   }
+
+  Future<void> signOut() async {
+    await _auth.signOut();
+  }
 }
 
 AuthService authService = AuthService();

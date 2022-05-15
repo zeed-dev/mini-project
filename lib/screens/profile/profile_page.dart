@@ -63,21 +63,6 @@ class ProfilePage extends StatelessWidget {
                     );
                   },
                 ),
-                InkWell(
-                  onTap: () async {
-                    _pageViewModel.selectedPageChange(0);
-                    await _auth.signOut();
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: ((context) => const SignInPage())),
-                    );
-                  },
-                  child: Icon(
-                    Icons.exit_to_app,
-                    color: AppStyle.white,
-                  ),
-                )
               ],
             ),
           ),

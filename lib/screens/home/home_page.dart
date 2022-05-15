@@ -2,6 +2,7 @@ import 'package:covid_app/common/const.dart';
 import 'package:covid_app/common/enum_state.dart';
 import 'package:covid_app/common/extension.dart';
 import 'package:covid_app/common/style.dart';
+import 'package:covid_app/screens/auth/sign_in_page.dart';
 import 'package:covid_app/screens/news/news.dart';
 import 'package:covid_app/screens/vaccine/aprove_vaccine.dart';
 import 'package:covid_app/screens/vaccine/history.dart';
@@ -18,6 +19,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  AuthViewModel? _authViewModel;
   Widget _buildWidgetHeader() {
     return SizedBox(
       width: double.infinity,
@@ -39,12 +41,32 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "Fight Covid-19",
-                  style: AppStyle.kSubtitle.copyWith(
-                    color: AppStyle.white,
-                    fontWeight: FontWeight.bold,
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Fight Covid-19",
+                      style: AppStyle.kSubtitle.copyWith(
+                        color: AppStyle.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () async {
+                        _authViewModel?.signOut();
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: ((context) => const SignInPage())),
+                        );
+                      },
+                      child: Icon(
+                        Icons.exit_to_app,
+                        color: AppStyle.white,
+                        size: 30,
+                      ),
+                    )
+                  ],
                 ),
                 const SizedBox(height: 4.0),
                 Text(
@@ -330,7 +352,7 @@ class _HomePageState extends State<HomePage> {
                                 builder: (context) => const HistoryVaccine()));
                       },
                       child: Visibility(
-                        visible: !state.user!.isAdmin,
+                        visible: !(state.user?.isAdmin ?? true),
                         child: Container(
                           height: 88,
                           width: 73,
@@ -375,7 +397,7 @@ class _HomePageState extends State<HomePage> {
                                 builder: (context) => const ApproveVaccine()));
                       },
                       child: Visibility(
-                        visible: state.user!.isAdmin,
+                        visible: state.user?.isAdmin ?? false,
                         child: Container(
                           height: 88,
                           width: 73,
@@ -435,6 +457,7 @@ class _HomePageState extends State<HomePage> {
   _init() {
     Future.microtask(() {
       Provider.of<CovidViewModel>(context, listen: false).getDataCovid();
+      _authViewModel = Provider.of<AuthViewModel>(context, listen: false);
     });
   }
 

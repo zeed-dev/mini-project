@@ -12,7 +12,7 @@ Widget dateFieldWidget({
 }) {
   return Padding(
     padding: const EdgeInsets.all(10),
-    child: TextField(
+    child: TextFormField(
       enabled: isEnabled,
       onTap: () async {
         var dataTime = await showDatePicker(
@@ -25,6 +25,13 @@ Widget dateFieldWidget({
         dateController.text =
             DateHelper.changeFormatIdToDateTimeFormat(date: dataTime) ?? "";
         onChanged(dateController.text);
+      },
+      validator: (value) {
+        if (value?.isEmpty ?? true) {
+          return "$label tidak boleh kosong";
+        } else {
+          return null;
+        }
       },
       onChanged: (value) {},
       controller: dateController,

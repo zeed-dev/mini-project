@@ -15,7 +15,7 @@ class MainPage extends StatelessWidget {
     final List<Widget> _screen = [
       const HomePage(),
       const VaccinePage(),
-      ProfilePage(),
+      const ProfilePage(),
     ];
     return Scaffold(
       body: SafeArea(child: _screen[_pageViewModel.selectedPage]),

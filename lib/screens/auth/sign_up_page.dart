@@ -1,8 +1,10 @@
 import 'package:covid_app/common/enum_state.dart';
+import 'package:covid_app/common/extension.dart';
 import 'package:covid_app/common/style.dart';
 import 'package:covid_app/models/user.dart';
 import 'package:covid_app/screens/main_page.dart';
 import 'package:covid_app/view_models/auth_view_model.dart';
+import 'package:covid_app/widgets/auth_hedaer.dart';
 import 'package:covid_app/widgets/text_field_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -43,15 +45,7 @@ class _SignUpPageState extends State<SignUpPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
-              height: 200,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/bg.png'),
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
+            const AuthHeaderWidget(),
             TextFieldWidget(
               controller: _nameController ?? TextEditingController(),
               onChange: (value) {},
@@ -136,6 +130,13 @@ class _SignUpPageState extends State<SignUpPage> {
                       style: AppStyle.kHeading6,
                     ),
                   ),
+            const SizedBox(height: 20),
+            InkWell(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Text("Sudah punya akun?", style: AppStyle.kBodyText),
+            ),
           ],
         ),
       ),

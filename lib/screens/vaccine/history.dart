@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:covid_app/common/enum_state.dart';
 import 'package:covid_app/common/extension.dart';
 import 'package:covid_app/common/style.dart';

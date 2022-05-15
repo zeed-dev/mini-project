@@ -1,17 +1,12 @@
 import 'package:covid_app/common/const.dart';
 import 'package:covid_app/common/style.dart';
-import 'package:covid_app/screens/auth/sign_in_page.dart';
 import 'package:covid_app/view_models/auth_view_model.dart';
-import 'package:covid_app/view_models/page_view_model.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ProfilePage extends StatelessWidget {
-  ProfilePage({Key? key}) : super(key: key);
-
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-  final PageViewModel _pageViewModel = PageViewModel();
+  const ProfilePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

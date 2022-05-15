@@ -24,7 +24,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(10),
-      child: TextField(
+      child: TextFormField(
         controller: widget.controller,
         decoration: InputDecoration(
           hintText: widget.label,
@@ -37,6 +37,13 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
             ),
           ),
         ),
+        validator: (value) {
+          if (value?.isEmpty ?? true) {
+            return "${widget.label} tidak boleh kosong";
+          } else {
+            return null;
+          }
+        },
         obscureText: widget.obscureText,
         textInputAction: TextInputAction.search,
       ),

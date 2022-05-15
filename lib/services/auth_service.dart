@@ -10,25 +10,11 @@ class AuthService {
 
   Future<UserModel> getUserById(String userId) async {
     DocumentSnapshot snapshot = await _ref.doc(userId).get();
-    return UserModel(
-      id: userId,
-      email: snapshot["email"],
-      name: snapshot["name"],
-      address: snapshot["address"],
-      phone: snapshot["phone"],
-      isAdmin: snapshot["isAdmin"],
-    );
+    return UserModel.fromJson(snapshot.data() as Map<String, dynamic>);
   }
 
   Future<void> setUser(UserModel user) async {
-    await _ref.doc(user.id).set({
-      "id": user.id,
-      "email": user.email,
-      "name": user.name,
-      "address": user.address,
-      "phone": user.phone,
-      "isAdmin": user.isAdmin,
-    });
+    await _ref.doc(user.id).set(user.toJson());
   }
 
   Future<UserModel> signIn(String email, String password) async {

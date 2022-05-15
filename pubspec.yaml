@@ -40,6 +40,9 @@ dependencies:
   dropdown_search: ^3.0.1
   fl_chart: ^0.50.1
   webview_flutter: ^3.0.4
+  mockito: ^5.1.0
+  test: ^1.19.5
+  build_runner: ^2.1.10
 
 dev_dependencies:
   flutter_native_splash: 

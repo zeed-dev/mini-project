@@ -1,5 +1,6 @@
 import 'package:covid_app/common/enum_state.dart';
 import 'package:covid_app/common/extension.dart';
+import 'package:covid_app/common/slide_route_builder.dart';
 import 'package:covid_app/common/style.dart';
 import 'package:covid_app/screens/news/news_detail.dart';
 import 'package:covid_app/view_models/news_view_model.dart';
@@ -47,10 +48,10 @@ class _NewsPageState extends State<NewsPage> {
                   onTap: () {
                     Navigator.push(
                         context,
-                        MaterialPageRoute(
-                            builder: (context) => NewsDetailPage(
-                                  url: article?.url ?? "",
-                                )));
+                        SlidePageRoute(
+                            page: NewsDetailPage(
+                          url: article?.url ?? "",
+                        )));
                   },
                   child: ListTile(
                     contentPadding: paddingOnly(

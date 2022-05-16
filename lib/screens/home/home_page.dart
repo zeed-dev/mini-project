@@ -1,6 +1,7 @@
 import 'package:covid_app/common/const.dart';
 import 'package:covid_app/common/enum_state.dart';
 import 'package:covid_app/common/extension.dart';
+import 'package:covid_app/common/slide_route_builder.dart';
 import 'package:covid_app/common/style.dart';
 import 'package:covid_app/screens/auth/sign_in_page.dart';
 import 'package:covid_app/screens/news/news.dart';
@@ -56,8 +57,7 @@ class _HomePageState extends State<HomePage> {
                         _authViewModel?.signOut();
                         Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(
-                              builder: ((context) => const SignInPage())),
+                          SlidePageRoute(page: const SignInPage()),
                         );
                       },
                       child: Icon(
@@ -304,9 +304,7 @@ class _HomePageState extends State<HomePage> {
                     InkWell(
                       onTap: () {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const NewsPage()));
+                            context, SlidePageRoute(page: const NewsPage()));
                       },
                       child: Container(
                         height: 88,
@@ -346,10 +344,8 @@ class _HomePageState extends State<HomePage> {
                     const SizedBox(width: 16),
                     InkWell(
                       onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const HistoryVaccine()));
+                        Navigator.push(context,
+                            SlidePageRoute(page: const HistoryVaccine()));
                       },
                       child: Visibility(
                         visible: !(state.user?.isAdmin ?? true),
@@ -391,10 +387,8 @@ class _HomePageState extends State<HomePage> {
                     ),
                     InkWell(
                       onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const ApproveVaccine()));
+                        Navigator.push(context,
+                            SlidePageRoute(page: const ApproveVaccine()));
                       },
                       child: Visibility(
                         visible: state.user?.isAdmin ?? false,

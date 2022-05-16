@@ -1,4 +1,5 @@
 import 'package:covid_app/common/extension.dart';
+import 'package:covid_app/common/slide_route_builder.dart';
 import 'package:covid_app/common/style.dart';
 import 'package:covid_app/components/dropdown_search.dart';
 import 'package:covid_app/models/distric.dart';
@@ -108,8 +109,8 @@ class _VaccinePageState extends State<VaccinePage> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                            builder: (context) => BookingPage(
+                          SlidePageRoute(
+                            page: BookingPage(
                               vaccineModel: _vaccineViewModel.vaccine?[index] ??
                                   VaccineModel(),
                             ),

@@ -1,4 +1,5 @@
 import 'package:covid_app/common/enum_state.dart';
+import 'package:covid_app/common/slide_route_builder.dart';
 import 'package:covid_app/common/style.dart';
 import 'package:covid_app/screens/auth/sign_up_page.dart';
 import 'package:covid_app/screens/main_page.dart';
@@ -64,11 +65,9 @@ class _SignInPageState extends State<SignInPage> {
                             if (_authViewModel.requestState ==
                                 RequestState.LOADED) {
                               Navigator.pushAndRemoveUntil(
-                                context,
-                                MaterialPageRoute(
-                                    builder: ((context) => const MainPage())),
-                                (route) => false,
-                              );
+                                  context,
+                                  SlidePageRoute(page: const MainPage()),
+                                  (route) => false);
                             } else {
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(SnackBar(
@@ -106,8 +105,8 @@ class _SignInPageState extends State<SignInPage> {
               const SizedBox(height: 20),
               InkWell(
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => const SignUpPage()));
+                  Navigator.push(
+                      context, SlidePageRoute(page: const SignUpPage()));
                 },
                 child: Text("Belum punya akun?", style: AppStyle.kBodyText),
               ),

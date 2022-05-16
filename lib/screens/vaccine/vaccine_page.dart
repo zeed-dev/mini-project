@@ -1,7 +1,7 @@
 import 'package:covid_app/common/extension.dart';
 import 'package:covid_app/common/slide_route_builder.dart';
 import 'package:covid_app/common/style.dart';
-import 'package:covid_app/components/dropdown_search.dart';
+import 'package:covid_app/widgets/dropdown_search.dart';
 import 'package:covid_app/models/distric.dart';
 import 'package:covid_app/models/province.dart';
 import 'package:covid_app/models/vaccine.dart';
@@ -71,7 +71,7 @@ class _VaccinePageState extends State<VaccinePage> {
               ),
             ),
             const SizedBox(height: 30.0),
-            dropDownSearchWidget(
+            DropdownSearchWidget(
               label: "Provinsi",
               controller: _provinceController ?? TextEditingController(),
               items: _vaccineViewModel.province as List<ProvinceModel>,
@@ -83,7 +83,7 @@ class _VaccinePageState extends State<VaccinePage> {
             const SizedBox(height: 12.0),
             Visibility(
               visible: _provinceController!.text.isNotEmpty,
-              child: dropDownSearchWidget(
+              child: DropdownSearchWidget(
                 label: "Kota",
                 controller: _districController ?? TextEditingController(),
                 items: _vaccineViewModel.distric as List<DistricModel>,

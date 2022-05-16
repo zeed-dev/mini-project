@@ -1,4 +1,4 @@
-import 'package:covid_app/components/bottom_navbar.dart';
+import 'package:covid_app/widgets/bottom_navbar.dart';
 import 'package:covid_app/screens/home/home_page.dart';
 import 'package:covid_app/screens/profile/profile_page.dart';
 import 'package:covid_app/screens/vaccine/vaccine_page.dart';
@@ -19,7 +19,9 @@ class MainPage extends StatelessWidget {
     ];
     return Scaffold(
       body: SafeArea(child: _screen[_pageViewModel.selectedPage]),
-      bottomNavigationBar: buildBottomNavigationBar(_pageViewModel),
+      bottomNavigationBar: BootomNavbarWidget(
+        pageViewModel: _pageViewModel,
+      ),
     );
   }
 }

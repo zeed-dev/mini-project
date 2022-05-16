@@ -90,29 +90,29 @@ class _HistoryVaccineState extends State<HistoryVaccine> {
                                       ),
                                     ),
                                     const SizedBox(height: 16.0),
-                                    itemCardWidget(
-                                      key: "Nama",
+                                    ItemCardWidget(
+                                      keys: "Nama",
                                       value: _authViewModel.user?.name,
                                     ),
-                                    itemCardWidget(
-                                      key: "Alamat",
+                                    ItemCardWidget(
+                                      keys: "Alamat",
                                       value: _authViewModel.user?.address,
                                     ),
-                                    itemCardWidget(
-                                      key: "Vakisn ke",
+                                    ItemCardWidget(
+                                      keys: "Vakisn ke",
                                       value: booking.vaksinKe,
                                     ),
-                                    itemCardWidget(
-                                      key: "Tanggal Vaksin",
+                                    ItemCardWidget(
+                                      keys: "Tanggal Vaksin",
                                       value: booking.dateVisit,
                                     ),
-                                    itemCardWidget(
-                                      key: "Status",
+                                    ItemCardWidget(
+                                      keys: "Status",
                                       value: booking.status,
                                     ),
                                     const Divider(),
-                                    itemCardWidget(
-                                      key: "Dibuat Tanggal",
+                                    ItemCardWidget(
+                                      keys: "Dibuat Tanggal",
                                       value: DateHelper
                                           .changeFormatIdToDateTimeFormat(
                                         date: booking.createdAt?.toDate(),

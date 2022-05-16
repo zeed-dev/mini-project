@@ -77,24 +77,24 @@ class _ApproveVaccineState extends State<ApproveVaccine> {
                                       ),
                                     ),
                                     const SizedBox(height: 16.0),
-                                    itemCardWidget(
-                                      key: "Nama",
+                                    ItemCardWidget(
+                                      keys: "Nama",
                                       value: booking.nama,
                                     ),
-                                    itemCardWidget(
-                                      key: "Alamat",
+                                    ItemCardWidget(
+                                      keys: "Alamat",
                                       value: booking.alamat,
                                     ),
-                                    itemCardWidget(
-                                      key: "Tanggal vaksin",
+                                    ItemCardWidget(
+                                      keys: "Tanggal vaksin",
                                       value: booking.dateVisit,
                                     ),
-                                    itemCardWidget(
-                                      key: "Vaksin ke",
+                                    ItemCardWidget(
+                                      keys: "Vaksin ke",
                                       value: booking.vaksinKe,
                                     ),
-                                    itemCardWidget(
-                                      key: "Status",
+                                    ItemCardWidget(
+                                      keys: "Status",
                                       value: booking.status,
                                     ),
                                     ElevatedButton(

@@ -1,10 +1,16 @@
-// ignore_for_file: must_be_immutable
-
 import 'package:covid_app/helper/date_helper.dart';
 import 'package:flutter/material.dart';
 
 class DateFieldWidget extends StatelessWidget {
-  DateFieldWidget({
+  final String? label;
+  final TextEditingController dateController;
+  final BuildContext? context;
+  final Function(String) onChanged;
+  final bool? isEnabled;
+  final bool? isOptional;
+  final String? firstDate;
+
+  const DateFieldWidget({
     Key? key,
     required this.label,
     required this.onChanged,
@@ -12,15 +18,8 @@ class DateFieldWidget extends StatelessWidget {
     this.firstDate,
     this.isEnabled = true,
     this.isOptional = false,
+    this.context,
   }) : super(key: key);
-
-  String? label;
-  TextEditingController dateController;
-  BuildContext? context;
-  Function(String) onChanged;
-  bool? isEnabled;
-  bool? isOptional;
-  String? firstDate;
 
   @override
   Widget build(BuildContext context) {

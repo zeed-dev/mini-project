@@ -3,11 +3,11 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 
 Widget dropDownSearchWidget({
-  String? label,
   required TextEditingController controller,
   required List<dynamic> items,
-  Function? getData,
   required Function(dynamic) onChanged,
+  String? label,
+  Function? getData,
   Function(dynamic)? onSaved,
   bool isEnabled = true,
   bool isOptional = false,

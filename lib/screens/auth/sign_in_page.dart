@@ -5,7 +5,7 @@ import 'package:covid_app/screens/auth/sign_up_page.dart';
 import 'package:covid_app/screens/main_page.dart';
 import 'package:covid_app/view_models/auth_view_model.dart';
 import 'package:covid_app/widgets/auth_hedaer.dart';
-import 'package:covid_app/widgets/text_field_widget.dart';
+import 'package:covid_app/widgets/text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

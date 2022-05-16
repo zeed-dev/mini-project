@@ -6,7 +6,7 @@ import 'package:covid_app/models/vaccine.dart';
 import 'package:covid_app/view_models/auth_view_model.dart';
 import 'package:covid_app/view_models/booking_view_model.dart';
 import 'package:covid_app/widgets/date_piocker.dart';
-import 'package:covid_app/widgets/text_field_widget.dart';
+import 'package:covid_app/widgets/text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

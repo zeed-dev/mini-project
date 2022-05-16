@@ -1,5 +1,6 @@
 import 'package:covid_app/models/covid.dart';
 import 'package:covid_app/models/news.dart';
+import 'package:covid_app/models/user.dart';
 
 final tCovidTest = CovidModel(
   positif: 11111,
@@ -20,3 +21,12 @@ final tNewsTest = <Article>[
     content: "content",
   ),
 ];
+
+UserModel tUsersModelTest = UserModel(
+  id: "1231233",
+  email: "email@test.com",
+  name: "Ziad Alfian",
+  address: "Jl. Bla bla",
+  phone: "083129431925",
+  isAdmin: false,
+);

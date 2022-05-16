@@ -1,5 +1,4 @@
 import 'package:covid_app/models/covid.dart';
-import 'package:covid_app/models/news.dart';
 import 'package:covid_app/services/covid_service.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
